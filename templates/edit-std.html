@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Update Student Details</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+
+            background-image: url("/static/images/background.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Header */
+
+        .page-header {
+            width: 98%;
+            height: 110px;
+            margin: 12px auto 25px;
+
+            background-image: url("/static/images/header.png");
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 25px;
+        }
+
+        .page-header h1 {
+            color: #172e70;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Form Container */
+
+        .container {
+            width: 620px;
+            margin: 35px auto;
+            padding: 25px;
+
+            background-color: rgba(255, 255, 255, 0.82);
+
+            border: 2px solid #d8a3ff;
+            border-radius: 25px;
+
+            box-shadow: 0 8px 20px rgba(100, 50, 150, 0.18);
+        }
+
+        .form-heading {
+            font-size: 16px;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        /* Form Rows */
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 225px 1fr;
+            align-items: center;
+
+            margin: 15px 0;
+            gap: 10px;
+        }
+
+        label {
+            color: #172c62;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+
+            border: 1.5px solid #aab8df;
+            border-radius: 8px;
+
+            font-size: 17px;
+            color: #172c62;
+
+            background-color: rgba(255, 255, 255, 0.9);
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #923ee9;
+            box-shadow: 0 0 5px #c99af5;
+        }
+
+        /* Gender */
+
+        .gender-options {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .gender-options label {
+            font-size: 17px;
+            font-weight: normal;
+        }
+
+        input[type="radio"] {
+            accent-color: #8538e8;
+            transform: scale(1.2);
+        }
+
+        /* Buttons */
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        button,
+        .home-btn {
+            padding: 13px 20px;
+
+            border: none;
+            border-radius: 30px;
+
+            font-size: 17px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #7435d9, #ae42ed);
+            color: white;
+        }
+
+        .clear-btn {
+            background-color: white;
+            color: #7826cf;
+            border: 2px solid #b76aff;
+        }
+
+        .home-btn {
+            background-color: #f0f0f0;
+            color: #7826cf;
+            text-decoration: underline;
+        }
+
+        button:hover,
+        .home-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(100, 50, 150, 0.25);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 650px) {
+
+            .container {
+                width: 100%;
+            }
+
+            .page-header {
+                height: 100px;
+            }
+
+            .page-header h1 {
+                font-size: 23px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <div class="page-header">
+        <h1>UPDATE STUDENT FORM OF {{ std[1] }}</h1>
+    </div>
+
+    <!-- Student Form -->
+
+    <div class="container">
+
+        <div class="form-heading">
+            👤 Student Details Form
+        </div>
+
+        <!-- IMPORTANT: Student ID is passed dynamically -->
+
+        <form action="/students/update/{{ std[0] }}" method="post">
+
+            <!-- Student Name -->
+
+            <div class="form-row">
+
+                <label>🪪 Student Name:</label>
+
+                <input type="text"
+                    name="name"
+                    value="{{ std[1] }}"
+                    required>
+
+            </div>
+
+
+            <!-- Age -->
+
+            <div class="form-row">
+
+                <label>📅 Age:</label>
+
+                <input type="number"
+                    name="age"
+                    value="{{ std[2] }}"
+                    required>
+
+            </div>
+
+
+            <!-- Marks -->
+
+            <div class="form-row">
+
+                <label>📊 Marks:</label>
+
+                <input type="number"
+                    name="marks"
+                    value="{{ std[3] }}"
+                    required>
+
+            </div>
+
+
+            <!-- Image URL -->
+
+            <div class="form-row">
+
+                <label>🖼️ Image:</label>
+
+                <input type="text"
+                    name="image"
+                    value="{{ std[4] }}">
+
+            </div>
+
+
+            <!-- Course Dropdown -->
+
+            <div class="form-row">
+
+                <label>📚 Course:</label>
+
+                <select name="course" required>
+
+                    <option value="Python"
+                    {% if std[7] == 'Python' %}selected{% endif %}>
+                        PYTHON
+                    </option>
+
+                    <option value="MERN"
+                    {% if std[7] == 'MERN' %}selected{% endif %}>
+                        MERN
+                    </option>
+
+                    <option value="Full Stack"
+                    {% if std[7] == 'Full Stack' %}selected{% endif %}>
+                        FULL STACK
+                    </option>
+
+                    <option value="Java"
+                    {% if std[7] == 'Java' %}selected{% endif %}>
+                        JAVA
+                    </option>
+
+                    <option value="HTML"
+                    {% if std[7] == 'HTML' %}selected{% endif %}>
+                        HTML
+                    </option>
+
+                    <option value="CSS"
+                    {% if std[7] == 'CSS' %}selected{% endif %}>
+                        CSS
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Gender -->
+
+            <div class="form-row">
+
+                <label>👥 Gender:</label>
+
+                <div class="gender-options">
+
+                    <label>
+
+                        <input type="radio"
+                            name="gender"
+                            value="Male"
+                            {% if std[5] == 'Male' %}checked{% endif %}
+                            required>
+
+                        Male
+
+                    </label>
+
+
+                    <label>
+
+                        <input type="radio"
+                            name="gender"
+                            value="Female"
+                            {% if std[5] == 'Female' %}checked{% endif %}>
+
+                        Female
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- Attendance -->
+
+            <div class="form-row">
+
+                <label>✔️ Attendance:</label>
+
+                <select name="status" required>
+
+                    <option value="1"
+                    {% if std[6] == '1' %}selected{% endif %}>
+                        Present
+                    </option>
+
+                    <option value="0"
+                    {% if std[6] == '0' %}selected{% endif %}>
+                        Absent
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="buttons">
+
+                <button type="submit" class="submit-btn">
+                    💾 Submit Details
+                </button>
+
+                <button type="reset" class="clear-btn">
+                    🔄 Clear
+                </button>
+
+                <a href="/home" class="home-btn">
+                    🏠 Back to Home
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

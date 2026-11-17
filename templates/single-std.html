@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 15px 25px;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+
+            background-image: url("/static/images/background.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Header */
+
+        .header {
+            height: 130px;
+            width: 100%;
+            border-radius: 22px;
+
+            background-image: url("/static/images/header.png");
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: #102b68;
+            font-size: 38px;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Main Card */
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 75vh;
+        }
+
+        .student-card {
+            width: 750px;
+            min-height: 440px;
+            padding: 25px;
+
+            display: flex;
+            gap: 25px;
+            align-items: center;
+
+            background: rgba(255, 255, 255, 0.88);
+            border: 2px solid #b36aff;
+            border-radius: 28px;
+
+            box-shadow: 0 8px 22px rgba(105, 45, 180, 0.20);
+        }
+
+        /* Student Image */
+
+        .image-section {
+            width: 270px;
+            height: 300px;
+            flex-shrink: 0;
+
+            border: 2px solid #a65cff;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Student Information */
+
+        .details-section {
+            flex: 1;
+        }
+
+        .details-section h2 {
+            color: #5420a5;
+            text-align: center;
+            font-size: 25px;
+            margin: 0 0 15px;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 8px;
+            padding: 9px 12px;
+
+            background: rgba(221, 204, 255, 0.35);
+            border-radius: 12px;
+
+            font-size: 17px;
+        }
+
+        .detail-row strong {
+            color: #172e68;
+        }
+
+        .detail-row span {
+            color: #24205b;
+        }
+
+        .present {
+            color: green !important;
+            font-weight: bold;
+        }
+
+        .absent {
+            color: red !important;
+            font-weight: bold;
+        }
+
+        /* Buttons */
+
+        .button-section {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 23px;
+            border-radius: 30px;
+
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+
+            background: linear-gradient(135deg, #7540e8, #b04bea);
+            box-shadow: 0 4px 10px rgba(110, 50, 200, 0.2);
+
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(110, 50, 200, 0.3);
+        }
+
+        .delete-btn {
+            background: linear-gradient(135deg, #ff4b85, #ff1765);
+        }
+
+        .home-btn {
+            background: linear-gradient(135deg, #7540e8, #5130d5);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 700px) {
+            body {
+                padding: 10px;
+            }
+
+            .header {
+                height: 100px;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+            .main-container {
+                padding: 25px 0;
+            }
+
+            .student-card {
+                width: 95%;
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .image-section {
+                width: 220px;
+                height: 230px;
+            }
+
+            .details-section {
+                width: 100%;
+            }
+
+            .detail-row {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+
+    <div class="header">
+        <h1>STUDENT DETAILS</h1>
+    </div>
+
+    <!-- Student Card -->
+
+    <div class="main-container">
+
+        <div class="student-card">
+
+            <!-- Student Image -->
+
+            <div class="image-section">
+                <img src="{{ std[4] }}" alt="Student Image">
+            </div>
+
+            <!-- Student Information -->
+
+            <div class="details-section">
+
+                <h2>Student Information</h2>
+
+                <div class="detail-row">
+                    <strong>🪪 Student ID:</strong>
+                    <span>{{std[0] }}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>👤 Name:</strong>
+                    <span>{{ std[1] }}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>📅 Age:</strong>
+                    <span>{{ std[2] }}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>📊 Marks:</strong>
+                    <span>{{ std[3] }}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>🎓 Course:</strong>
+                    <span>{{ std[7] }}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>⚧ Gender:</strong>
+                    <span>{{std[5] }}</span>
+                </div>
+
+                <div class="detail-row">
+                    <strong>✔ Attendance:</strong>
+
+                {% if std[6] == "1" %}
+
+                    <span class="status present">
+                        ✔ Present
+                    </span>
+
+                {% else %}
+
+                    <span class="status absent">
+                        ✖ Absent
+                    </span>
+
+                {% endif %}
+
+                </div>
+
+                <!-- Buttons -->
+
+                <div class="button-section">
+
+                    <a href="/students/update/{{ std[0] }}" class="btn">
+                    ✏ Update
+                    </a>
+
+                    <a href="/students/delete/{{ std[0] }}"
+                    class="btn delete-btn"
+                    onclick="return confirm('Are you sure you want to delete this student?')">
+                    🗑 Delete
+                    </a>
+
+                    <a href="/home" class="btn home-btn">
+                        🏠 Back to Home
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,3 @@
+-- database: c:\Users\91720\OneDrive\Desktop\fastapi\std\students.db
+
+SELECT * FROM students;

@@ -1,0 +1,324 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student Details</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 15px;
+
+            font-family: Arial, sans-serif;
+
+            background-image: url("/static/images/background.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+.page-header {
+    width: 98%;
+    height: 110px;
+    margin: 12px auto 25px;
+
+    background-image: url("/static/images/header.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 25px;
+}
+
+.page-header h1 {
+    color: #172e70;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+        /* Form Container */
+
+        .container {
+            width: 620px;
+            margin: 35px auto;
+
+            padding: 25px;
+
+            background-color: rgba(255, 255, 255, 0.82);
+
+            border: 2px solid #d8a3ff;
+            border-radius: 25px;
+
+            box-shadow: 0 8px 20px rgba(100, 50, 150, 0.18);
+        }
+
+
+        /* Form Rows */
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 225px 1fr;
+            align-items: center;
+
+            margin: 15px 0;
+            gap: 10px;
+        }
+
+        label {
+            color: #172c62;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+
+            border: 1.5px solid #aab8df;
+            border-radius: 8px;
+
+            font-size: 17px;
+            color: #172c62;
+
+            background-color: rgba(255, 255, 255, 0.9);
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #923ee9;
+            box-shadow: 0 0 5px #c99af5;
+        }
+
+        /* Gender */
+
+        .gender-options {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+        }
+
+        .gender-options label {
+            font-size: 17px;
+            font-weight: normal;
+        }
+
+        input[type="radio"] {
+            accent-color: #8538e8;
+            transform: scale(1.2);
+        }
+
+        /* Buttons */
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 13px 25px;
+
+            border: none;
+            border-radius: 30px;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #7435d9, #ae42ed);
+            color: white;
+        }
+
+        .clear-btn {
+            background-color: white;
+            color: #7826cf;
+            border: 2px solid #b76aff;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(100, 50, 150, 0.25);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 650px) {
+
+            .container {
+                width: 100%;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .header h1 {
+                font-size: 23px;
+            }
+
+            .header p {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Student Form -->
+    <div class="page-header">
+    <h1>STUDENT FORM</h1>
+</div>
+
+    <div class="container">
+
+        <div class="form-heading">
+            👤 Student Details Form
+        </div>
+
+        <form action="/students/add" method="post">
+
+            <!-- Student Name -->
+
+            <div class="form-row">
+                <label>🪪 Student Name:</label>
+                <input type="text"
+                    name="name"
+                    placeholder="Enter student name"
+                    required>
+            </div>
+
+
+            <!-- Age -->
+
+            <div class="form-row">
+                <label>📅 Age:</label>
+                <input type="number"
+                    name="age"
+                    placeholder="Enter age"
+                    required>
+            </div>
+
+
+            <!-- Marks -->
+
+            <div class="form-row">
+                <label>📊 Marks:</label>
+                <input type="number"
+                    name="marks"
+                    placeholder="Enter marks"
+                    required>
+            </div>
+
+
+            <!-- Image URL -->
+
+            <div class="form-row">
+                <label>🖼️ Image:</label>
+                <input type="text"
+                    name="image"
+                    placeholder="Paste image URL"
+                    required>
+            </div>
+
+
+            <!-- Course Dropdown -->
+
+            <div class="form-row">
+                <label>📚 Course:</label>
+
+                <select name="course" required>
+                    <option value="">Select Course</option>
+                    <option value="Python">PYTHON</option>
+                    <option value="MERN">MERN</option>
+                    <option value="Full Stack">FULL STACK</option>
+                    <option value="Java">JAVA</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                </select>
+            </div>
+
+
+            <!-- Gender -->
+
+            <div class="form-row">
+                <label>👥 Gender:</label>
+
+                <div class="gender-options">
+                    <label>
+                        <input type="radio"
+                            name="gender"
+                            value="Male"
+                            required>
+                        Male
+                    </label>
+
+                    <label>
+                        <input type="radio"
+                            name="gender"
+                            value="Female">
+                        Female
+                    </label>
+                </div>
+            </div>
+
+
+            <!-- Attendance -->
+
+            <div class="form-row">
+                <label>✔️ Attendance:</label>
+
+                <select name="status" required>
+                    <option value="1">Present</option>
+                    <option value="0">Absent</option>
+                </select>
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="buttons">
+
+                <button type="submit" class="submit-btn">
+                    💾 Submit Details
+                </button>
+
+                <button type="reset" class="clear-btn">
+                    🔄 Clear
+                </button>
+
+                <button><a href="/home" class="btn home-btn">
+                        🏠 Back to Home
+                    </a></button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+</html>

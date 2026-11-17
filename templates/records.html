@@ -1,0 +1,557 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Records</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 10px 18px 30px;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+
+            background-image: url("/static/images/background.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* HEADER */
+
+        .page-header {
+            height: 105px;
+            width: 100%;
+            margin: 0 auto 15px;
+
+            background-image: url("/static/images/header.png");
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            border-radius: 35px;
+        }
+
+        .page-header h1 {
+            color: #142b64;
+            font-size: 32px;
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .page-header p {
+            color: #142b64;
+            font-size: 17px;
+            font-style: italic;
+            margin: 5px 0;
+        }
+
+        /* MAIN HEADING */
+
+        .main-heading {
+            text-align: center;
+            color: #172e75;
+            font-size: 29px;
+            margin: 15px 0;
+        }
+
+        /* NAVIGATION BUTTONS */
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 18px 0 25px;
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            padding: 11px 25px;
+            border-radius: 30px;
+
+            background: linear-gradient(
+                90deg,
+                #7135e8,
+                #a044ef
+            );
+
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+
+            box-shadow: 0 4px 10px rgba(100, 50, 200, 0.25);
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(
+                90deg,
+                #5142d9,
+                #8148ed
+            );
+
+            outline: 3px solid #c5a5ff;
+            outline-offset: 2px;
+        }
+
+        /* TOTAL STUDENTS */
+
+        .total-count {
+            width: fit-content;
+            margin: 0 auto 18px;
+            padding: 10px 25px;
+
+            background: #e9ddff;
+            border: 1px solid #c9a6ff;
+            border-radius: 20px;
+
+            color: #172e75;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        /* SECTION TITLE */
+
+        .section-title {
+            color: #263e83;
+            font-size: 21px;
+            margin: 20px auto 12px;
+            max-width: 1250px;
+        }
+
+        /* TOP THREE CARDS */
+
+        .top-three-container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+
+            max-width: 1050px;
+            margin: 0 auto 25px;
+        }
+
+        .rank-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            min-height: 125px;
+            padding: 12px;
+
+            border-radius: 22px;
+            border: 1.5px solid #d2a8ff;
+
+            background: linear-gradient(
+                135deg,
+                #fff1c7,
+                #ffffff
+            );
+
+            box-shadow: 0 5px 12px rgba(100, 70, 180, 0.15);
+        }
+
+        .rank-card:nth-child(2) {
+            background: linear-gradient(135deg, #e0efff, #ffffff);
+            border-color: #8bc5ff;
+        }
+
+        .rank-card:nth-child(3) {
+            background: linear-gradient(135deg, #ffe5d8, #ffffff);
+            border-color: #ffbd91;
+        }
+
+        .rank-number {
+            font-size: 35px;
+            font-weight: bold;
+            color: #8a4ce5;
+        }
+
+        .rank-photo {
+            width: 85px;
+            height: 85px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #d7baff;
+        }
+
+        .rank-details h3 {
+            margin: 0 0 7px;
+            color: #142b64;
+            font-size: 17px;
+        }
+
+        .rank-details p {
+            margin: 5px 0;
+            color: #253c78;
+            font-size: 14px;
+        }
+
+        .rank-marks {
+            display: inline-block;
+            background: #e2caff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* RECORDS TABLE */
+
+        .table-container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 25px;
+
+            overflow-x: auto;
+
+            border: 1.5px solid #b995ff;
+            border-radius: 16px;
+
+            background: rgba(255,255,255,0.75);
+
+            box-shadow: 0 5px 15px rgba(100,70,180,0.15);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+/* TABLE HEADINGS */
+
+th {
+    padding: 13px 10px;
+    background: linear-gradient(
+        90deg,
+        #7040dc,
+        #9a55e9
+    );
+
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* TABLE CONTENT */
+
+td {
+    padding: 9px 10px;
+    font-size: 25px;
+    color: #172e75;
+    font-weight: 500;
+
+    border-bottom: 1px solid #dfd1ff;
+}
+
+/* STUDENT IMAGE */
+
+.table-photo {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #c6a1ff;
+    vertical-align: middle;
+}
+
+/* MARKS */
+
+.marks {
+    font-size: 25px;
+    font-weight: bold;
+    color: #5724b9;
+}
+        tr:nth-child(even) {
+            background: rgba(222, 205, 255, 0.35);
+        }
+
+        tr:hover {
+            background: #eee4ff;
+        }
+
+
+        /* BACK TO HOME */
+
+        .home-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 25px 0 5px;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 13px 35px;
+
+            background: linear-gradient(
+                90deg,
+                #7135e8,
+                #a044ef
+            );
+
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+
+            border-radius: 30px;
+
+            box-shadow: 0 5px 12px rgba(100,50,200,0.3);
+            transition: 0.3s;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* RESPONSIVE */
+
+        @media(max-width: 850px) {
+
+            .top-three-container {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+            }
+
+            .page-header h1 {
+                font-size: 25px;
+            }
+
+        }
+
+        @media(max-width: 600px) {
+
+            body {
+                padding: 8px;
+            }
+
+            .page-header {
+                height: 85px;
+            }
+
+            .page-header h1 {
+                font-size: 19px;
+            }
+
+            .page-header p {
+                font-size: 12px;
+            }
+
+            .main-heading {
+                font-size: 22px;
+            }
+
+            .nav-btn {
+                padding: 9px 15px;
+                font-size: 13px;
+            }
+
+            .rank-card {
+                justify-content: flex-start;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="page-header">
+
+        <h1>STUDENT RECORDS</h1>
+
+    </div>
+
+
+    <!-- NAVIGATION BUTTONS -->
+
+    <div class="nav-buttons">
+
+        <a href="/students/records?sort=all"
+        class="nav-btn {% if sort == 'all' %}active{% endif %}">
+            👥 All Students
+        </a>
+
+        <a href="/students/records?sort=top"
+        class="nav-btn {% if sort == 'top' %}active{% endif %}">
+            🏆 Top to Bottom
+        </a>
+
+        <a href="/students/records?sort=bottom"
+        class="nav-btn {% if sort == 'bottom' %}active{% endif %}">
+            🏆 Bottom to Top
+        </a>
+
+    </div>
+
+
+    <!-- TOTAL STUDENTS -->
+
+    <div class="total-count">
+        Total Students: {{ total_students }}
+    </div>
+
+
+    <!-- TOP THREE STUDENTS -->
+
+    <h2 class="section-title">
+        🏆 Top 3 Students
+    </h2>
+
+    <div class="top-three-container">
+
+        {% for std in top_three %}
+
+        <div class="rank-card">
+
+            <div class="rank-number">
+                {{ loop.index }}
+            </div>
+
+            <img src="{{ std[4] }}"
+                class="rank-photo"
+                alt="{{ std[1] }}">
+
+            <div class="rank-details">
+
+                <h3>{{ std[1] }}</h3>
+
+                <p>
+                    {{ course_icons.get(std[7]|upper, "📘") }}
+                    {{ std[7] }}
+                </p>
+
+                <span class="rank-marks">
+                    {{ std[3] }} / 100
+                </span>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- STUDENT RECORDS TABLE -->
+
+    <h2 class="section-title">
+
+        {% if sort == "top" %}
+
+            🏆 Top to Bottom - Highest to Lowest
+
+        {% elif sort == "bottom" %}
+
+            🏆 Bottom to Top - Lowest to Highest
+
+        {% else %}
+
+            👥 All Students Records
+
+        {% endif %}
+
+    </h2>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>S.No</th>
+                    <th>Student ID</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                    <th>Marks</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for std in students %}
+
+                <tr>
+
+                    <td>{{ loop.index }}</td>
+
+                    <td>{{ std[0] }}</td>
+
+                    <td>
+                        <img src="{{ std[4] }}"
+                             class="table-photo"
+                             alt="{{ std[1] }}">
+                    </td>
+
+                    <td>{{ std[1] }}</td>
+
+                    <td>
+                        {{ course_icons.get(std[7]|upper, "📘") }}
+                        {{ std[7] }}
+                    </td>
+
+                    <td class="marks">
+                        {{ std[3] }} / 100
+                    </td>
+
+                </tr>
+
+                {% else %}
+
+                <tr>
+                    <td colspan="6">
+                        No student records found.
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- BACK TO HOME -->
+
+    <div class="home-container">
+
+        <a href="/home" class="home-btn">
+            🏠 Back to Home
+        </a>
+
+    </div>
+
+</body>
+</html>

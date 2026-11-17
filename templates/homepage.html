@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management System</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* BODY BACKGROUND */
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.15),
+                    rgba(255, 255, 255, 0.15)
+                ),
+                url("/static/images/homepage.png");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* MAIN CARD */
+
+        .hero-content {
+            width: 48%;
+            max-width: 700px;
+
+            padding: 45px;
+
+            background: rgba(248, 235, 255, 0.82);
+
+            backdrop-filter: blur(10px);
+
+            border: 2px solid rgba(190, 130, 255, 0.8);
+
+            border-radius: 25px;
+
+            box-shadow:
+                0 8px 30px rgba(90, 30, 160, 0.25);
+
+            text-align: left;
+
+            margin-top: 40px;
+            margin-left: 40px;
+            margin-bottom: 40px;
+
+            transition: 0.3s;
+        }
+
+        .hero-content:hover {
+            box-shadow:
+                0 12px 35px rgba(90, 30, 160, 0.35);
+
+            transform: translateY(-3px);
+        }
+
+        /* SMALL HEADING */
+
+        .small-heading {
+            color: #7816c9;
+
+            font-size: 40px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+
+            margin-top: 15px;
+        }
+
+        /* MAIN HEADING */
+
+        .hero-content h1 {
+            color: #421078;
+
+            font-size: 48px;
+
+            line-height: 1.2;
+
+            margin: 20px 0;
+        }
+
+        /* DESCRIPTION */
+
+        .description {
+            color: #603a83;
+
+            font-size: 21px;
+
+            line-height: 1.6;
+        }
+
+        /* FEATURES */
+
+        .features {
+            margin-top: 20px;
+        }
+
+        .features p {
+            color: #512080;
+
+            font-size: 19px;
+
+            font-weight: 600;
+
+            margin: 14px 0;
+        }
+
+        /* GET STARTED BUTTON */
+
+        .start-btn {
+            display: inline-block;
+
+            background: linear-gradient(
+                90deg,
+                #7025e8,
+                #b044ed
+            );
+
+            color: white;
+
+            padding: 16px 35px;
+
+            border-radius: 30px;
+
+            text-decoration: none;
+
+            font-size: 20px;
+
+            font-weight: bold;
+
+            margin-top: 20px;
+
+            box-shadow:
+                0 5px 12px rgba(100, 30, 180, 0.25);
+
+            transition: 0.3s;
+        }
+
+        .start-btn:hover {
+            background: linear-gradient(
+                90deg,
+                #5010b5,
+                #8726d4
+            );
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 18px rgba(100, 30, 180, 0.35);
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width: 1000px) {
+
+            .hero-content {
+                width: 65%;
+            }
+
+            .small-heading {
+                font-size: 32px;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            body {
+                background-position: center;
+            }
+
+            .hero-content {
+                width: 90%;
+
+                padding: 25px;
+
+                margin: 25px auto;
+            }
+
+            .small-heading {
+                font-size: 26px;
+            }
+
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .description {
+                font-size: 17px;
+            }
+
+            .features p {
+                font-size: 16px;
+            }
+
+            .start-btn {
+                font-size: 17px;
+                padding: 13px 25px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .hero-content {
+                width: 92%;
+                padding: 20px;
+            }
+
+            .small-heading {
+                font-size: 22px;
+            }
+
+            .hero-content h1 {
+                font-size: 27px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- MAIN CONTENT CARD -->
+
+    <div class="hero-content">
+
+        <p class="small-heading">
+            SMART STUDENT MANAGEMENT PLATFORM
+        </p>
+
+        <h1>
+            Manage Your Students Easily
+        </h1>
+
+        <p class="description">
+            Simplify student records, manage academic details,
+            and keep all student information organized in one place.
+        </p>
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+            <p>✓ Manage Student Details</p>
+
+            <p>✓ View Student Records</p>
+
+            <p>✓ Organize Academic Information</p>
+
+        </div>
+
+        <!-- GET STARTED BUTTON -->
+
+        <a href="/home" class="start-btn">
+            Get Started →
+        </a>
+
+    </div>
+
+</body>
+</html>
+
